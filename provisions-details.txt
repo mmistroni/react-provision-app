@@ -1,0 +1,34 @@
+
+firstOfMonthDebits = [ ('GAS', -64.0, 'GAS'), provision Type 6
+                       ('INSURANCE', -38, 'Scottish Widows'), provisiontype 3
+                       ('INSURANCE', -4, 'Hotpoint '),  provisonType 3
+                       ('OTHERS', -70, 'Clore Tikva'),  provisionType 13
+                       ('INSURANCE', -5, 'Hotpoint2'),   provisionType 3
+                       ('INSURANCE', -10, 'DGS RPP'),     provisionType 3
+                       ('HOUSE_INSURANCE', -31, 'Trentbridge Insurance'), provisionType 0
+                       ('WATER', -31, 'water'),   provisionType 5
+                       ('TV_LICENSE', -12.0, 'TV'),  provisionType 10
+                       ('COUNCIL', -165.0, 'Council'),  provisionType 9
+                       ('OTHERS', -1016.0, 'Ludham Mortgage'), provisionType 13
+                       ('OTHERS', -279.0, 'Trentbridge Mortgage')]   provisionType 13
+                       
+                        PHONE    SKY       provisionType 1
+                        HOUSE INSURANCE LUDHAM INSURANCE provisionType 0
+                       
+                       
+                       
++---------------+
+|            11 |
+|             5 |
+|             8 |
+|             2 |
+|             1 |
+|             9 |
+|             6 |
+|             7 |
+|             0 |
+|            13 |
+|            10 |
+|            12 |
+|             3 |
+|             4 |
