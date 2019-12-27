@@ -11,9 +11,9 @@ function callFun(car_make) {
 
 export const PROVISION_COLUMNDEFS =  [
       { headerName: "ID", field: "ID", filter: "agTextColumnFilter",checkboxSelection: true,
-              enableRowGroup:true}, 
+              enableRowGroup:true, width:80}, 
       { headerName: "DESCRIPTION", field: "description",  enableValue:true},
-      { headerName: "TYPE", field: "provisionType", enableRowGroup:true}, 
+      { headerName: "TYPE", field: "provisionType", enableRowGroup:true, width:100}, 
       { headerName: "AMOUNT", field: "amount",  enableValue:true, type: "numericColumn", allowedAggFuncs: ["sum"]},
       { headerName: "DATE", field: "provisionDate",  enableValue:true},
       { headerName: "USER", field: "user",  enableValue:true},

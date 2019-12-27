@@ -32,3 +32,18 @@ firstOfMonthDebits = [ ('GAS', -64.0, 'GAS'), provision Type 6
 |            12 |
 |             3 |
 |             4 |
+
+
+('HOUSE_INSURANCE', -48.0, 'LUDHAM Insurance', -4    3
+
+
+
+
+
+ ('PHONE', -68.0, 'SKY direct debit', + 8)        1
+
+
+
+
+
+0 5 17 * ? *

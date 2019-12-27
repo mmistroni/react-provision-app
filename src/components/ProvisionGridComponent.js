@@ -56,7 +56,7 @@ class ProvisionRenderGrid extends Component {
   }
     
   componentDidMount() {
-   fetch(' https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/query')
+   fetch('http://localhost:3001/provisions')
   .then(result => result.json())
   .then(jsonData => this.setState({
          rowData: jsonData}))

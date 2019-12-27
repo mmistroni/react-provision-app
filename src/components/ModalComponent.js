@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import {Control, LocalForm, Errors} from 'react-redux-form';
 
 import Modal from 'react-awesome-modal';
+import DateTimePicker from 'react-widgets/lib/DateTimePicker'
 
 // Refactor this into a component as we need to set the state for the react popup
 
@@ -49,32 +50,35 @@ class MyModal extends React.Component {
                         <LocalForm onSubmit={(values) => this.handleForm(values)}>
                             <Row className="form-group">
                                 <Col md={{size:8, offset:1}}>
-                                    <Control.text model=".ticker" id="ticker" name="ticker"
-                                        placeholder="Ticker"
+                                    <Control.text model=".description" id="description" name="description"
+                                        placeholder="Description"
+                                        className="form-control"
+                                        />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Col md={{size:10, offset:1}}>
+                                    <Control.select model=".contactType" name="contactType"
+                                        className="form-control">
+                                        <option>GAS</option>
+                                        <option>INSURANCE</option>
+                                        <option>PHONE</option>
+                                        <option>COUNCIL</option>
+                                    </Control.select>
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Col md={{size:8, offset:1}}>
+                                    <Control.text model=".amount" id="amount" name="amount"
+                                        placeholder="Amount"
                                         className="form-control"
                                         />
                                 </Col>
                             </Row>
                             <Row className="form-group">
                                 <Col md={{size:8, offset:1}}>
-                                    <Control.text model=".name" id="name" name="name"
-                                        placeholder="Name"
-                                        className="form-control"
-                                        />
-                                </Col>
-                            </Row>
-                            <Row className="form-group">
-                                <Col md={{size:8, offset:1}}>
-                                    <Control.text model=".qty" id="qty" name="qty"
-                                        placeholder="Qty"
-                                        className="form-control"
-                                        />
-                                </Col>
-                            </Row>
-                            <Row className="form-group">
-                                <Col md={{size:8, offset:1}}>
-                                    <Control.text model=".price" id="price" name="price"
-                                        placeholder="Price"
+                                    <Control.text model=".user" id="user" name="user"
+                                        placeholder="User"
                                         className="form-control"
                                         />
                                 </Col>
