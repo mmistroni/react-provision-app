@@ -56,7 +56,24 @@ class ProvisionRenderGrid extends Component {
   }
     
   componentDidMount() {
-   fetch('http://localhost:3001/provisions')
+   var params =   {
+                "method": "query",
+                "start_date": "2019-10-20",
+                "end_date": "2019-11-26"
+              }
+   
+   
+   // 'http://localhost:3001/provisions'
+    
+              
+   fetch('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/query', {
+                method: 'POST',
+                headers: {
+                          'Accept': 'application/json',
+                           'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(params)          
+          })
   .then(result => result.json())
   .then(jsonData => this.setState({
          rowData: jsonData}))
