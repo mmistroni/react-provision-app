@@ -18,6 +18,8 @@ class ProvisionRenderGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      start_date: '2019-10-20',
+      end_date : '2019-11-30',
       columnDefs: PROVISION_COLUMNDEFS,
       test: 'passing props',
       sideBar: {
@@ -55,18 +57,8 @@ class ProvisionRenderGrid extends Component {
     }
   }
     
-  componentDidMount() {
-   var params =   {
-                "method": "query",
-                "start_date": "2019-10-20",
-                "end_date": "2019-11-26"
-              }
-   
-   
-   // 'http://localhost:3001/provisions'
-    
-              
-   fetch('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/query', {
+  populateGrid(params) {  
+        fetch('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/query', {
                 method: 'POST',
                 headers: {
                           'Accept': 'application/json',
@@ -74,10 +66,24 @@ class ProvisionRenderGrid extends Component {
                 },
                 body: JSON.stringify(params)          
           })
-  .then(result => result.json())
-  .then(jsonData => this.setState({
-         rowData: jsonData}))
-  }  
+          .then(result => result.json())
+          .then(jsonData => this.setState({
+                 rowData: jsonData}))
+  }
+   
+    
+  componentDidMount() {
+   var params =   {
+                "method": "query",
+                "start_date": this.state.start_date,
+                "end_date": this.state.end_date
+              }
+   
+   alert("Fetching with:" + JSON.stringify(params));
+   // 'http://localhost:3001/provisions'
+   this.populateGrid(params);
+              
+   }  
 
 
   handleSubmit(values) {

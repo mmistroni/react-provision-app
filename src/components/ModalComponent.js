@@ -3,9 +3,10 @@ import { Breadcrumb, BreadcrumbItem,
             Button, Row, Col, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import {Control, LocalForm, Errors} from 'react-redux-form';
-
 import Modal from 'react-awesome-modal';
-import DateTimePicker from 'react-widgets/lib/DateTimePicker'
+import moment from 'moment';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 // Refactor this into a component as we need to set the state for the react popup
 
@@ -16,7 +17,9 @@ class MyModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible : false
+            visible : false,
+            start_date: new Date() ,
+            
         }
         const selectedNodes = props.grid;
     }
@@ -27,6 +30,11 @@ class MyModal extends React.Component {
         });
     }
 
+    handleChange(selected_dt){
+      var date_str = moment(selected_dt).format('YYYY-MM-DD');
+      
+      alert('You have selected:' + date_str);
+    }
 
     handleForm(values) {
       this.props.handleSubmit(values)
@@ -45,9 +53,17 @@ class MyModal extends React.Component {
             <React.Fragment>  
               <Button color="primary" onClick={() => this.openModal()}>Add</Button>
               <Modal visible={this.state.visible}  effect="fadeInUp" onClickAway={() => this.closeModal()}>
-                    <div style={{ width:300, height: 350, justifyContent:'center' }}>
+                    <div style={{ width:300, height: 400, justifyContent:'center' }}>
                         <h4 align="center">Shares Management</h4>
                         <LocalForm onSubmit={(values) => this.handleForm(values)}>
+                            <Row className="form-group">
+                                <Col md={{size:8, offset:1}}>
+                                  <DatePicker
+                                        selected={this.state.start_date}
+                                        onChange={this.handleChange} />
+
+                                </Col>
+                            </Row>
                             <Row className="form-group">
                                 <Col md={{size:8, offset:1}}>
                                     <Control.text model=".description" id="description" name="description"
