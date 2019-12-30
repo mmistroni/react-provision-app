@@ -10,6 +10,10 @@ import { Container, Row, Col, Button } from 'reactstrap';
 import MyModal from './ModalComponent';
 import { getServiceData, postServiceData } from '../utils/Utils';
 import "ag-grid-enterprise";
+import moment from 'moment';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 
 
@@ -20,6 +24,9 @@ class ProvisionRenderGrid extends Component {
     this.state = {
       start_date: '2019-10-20',
       end_date : '2019-11-30',
+      date_picker_start: moment().subtract('months', 1).toDate(),
+      date_picker_end: new Date(),
+           
       columnDefs: PROVISION_COLUMNDEFS,
       test: 'passing props',
       sideBar: {
@@ -56,6 +63,13 @@ class ProvisionRenderGrid extends Component {
       defaultColDef: { filter: true }
     }
   }
+    
+  handleDateRange(selected_dt){
+      var date_str = moment(selected_dt).format('YYYY-MM-DD');
+      
+      alert('You have selected:' + date_str);
+    }  
+    
     
   populateGrid(params) {  
         fetch('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/query', {
@@ -118,6 +132,11 @@ class ProvisionRenderGrid extends Component {
   render()  {
     return (
      <Container>
+      <div id="Dates">
+        <DatePicker selected={this.state.date_picker_start}/>
+        <DatePicker selected={this.state.date_picker_end}/>
+      </div>   
+
       <div 
         className="ag-theme-balham"
         style={{ 
