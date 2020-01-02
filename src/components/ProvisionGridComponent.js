@@ -22,8 +22,8 @@ class ProvisionRenderGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      start_date: '2019-10-20',
-      end_date : '2019-11-30',
+      start_date: moment().subtract('months', 1).format('YYYY-MM-DD'),
+      end_date : moment().format('YYYY-MM-DD'),
       date_picker_start: moment().subtract('months', 1).toDate(),
       date_picker_end: new Date(),
            
@@ -62,16 +62,38 @@ class ProvisionRenderGrid extends Component {
       },
       defaultColDef: { filter: true }
     }
+    this.handleStartDateChange = this.handleStartDateChange.bind(this);
+    this.handleEndDateChange = this.handleEndDateChange.bind(this);
   }
     
-  handleDateRange(selected_dt){
+  handleStartDateChange(selected_dt){
       var date_str = moment(selected_dt).format('YYYY-MM-DD');
-      
-      alert('You have selected:' + date_str);
+      alert('You have selected start:' + date_str);
+      this.setState({
+                 start_date: date_str,
+                 date_picker_start: selected_dt});
+      this.populateGrid(date_str, this.state.end_date );
+      this.gridApi.refreshCells();
+    }
+    
+  handleEndDateChange(selected_dt){
+      var date_str = moment(selected_dt).format('YYYY-MM-DD');
+      alert('You have selected:end ' + date_str);
+      this.setState({
+                 end_date: date_str,
+                 date_picker_end: selected_dt});
+      this.populateGrid(this.state.start_date, date_str );
     }  
     
     
-  populateGrid(params) {  
+  populateGrid(start_date, end_date) {
+        var params =   {
+                "method": "query",
+                "start_date": start_date,
+                "end_date": end_date 
+              }
+   
+        alert("Fetching with:" + JSON.stringify(params));
         fetch('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/query', {
                 method: 'POST',
                 headers: {
@@ -87,15 +109,8 @@ class ProvisionRenderGrid extends Component {
    
     
   componentDidMount() {
-   var params =   {
-                "method": "query",
-                "start_date": this.state.start_date,
-                "end_date": this.state.end_date
-              }
-   
-   alert("Fetching with:" + JSON.stringify(params));
    // 'http://localhost:3001/provisions'
-   this.populateGrid(params);
+   this.populateGrid(this.state.start_date, this.state.end_date );
               
    }  
 
@@ -133,8 +148,12 @@ class ProvisionRenderGrid extends Component {
     return (
      <Container>
       <div id="Dates">
-        <DatePicker selected={this.state.date_picker_start}/>
-        <DatePicker selected={this.state.date_picker_end}/>
+        <DatePicker selected={this.state.date_picker_start}
+                    onChange={this.handleStartDateChange} 
+        />
+        <DatePicker selected={this.state.date_picker_end}
+                    onChange={this.handleEndDateChange}
+        />
       </div>   
 
       <div 
