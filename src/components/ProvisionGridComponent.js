@@ -68,22 +68,26 @@ class ProvisionRenderGrid extends Component {
     
   handleStartDateChange(selected_dt){
       var date_str = moment(selected_dt).format('YYYY-MM-DD');
-      alert('You have selected start:' + date_str);
-      this.state.start_date =date_str; 
-      this.state.date_picker_start = selected_dt;
+      alert('You have selected start date:' + date_str);
+      this.setState({
+              start_date : date_str,
+              date_picker_start : selected_dt});
       this.populateGrid(date_str, this.state.end_date );
       this.gridApi.refreshCells();
     }
     
   handleEndDateChange(selected_dt){
       var date_str = moment(selected_dt).format('YYYY-MM-DD');
-      alert('You have selected:end ' + date_str);
-      this.state.end_date =date_str; 
-      this.state.date_picker_end = selected_dt;
+      alert('You have selected end date ' + date_str);
+      this.setState({
+              end_date : date_str,
+              date_picker_end : selected_dt});
+      
       this.populateGrid(this.state.start_date, date_str );
     }  
     
   populateGrid(start_date, end_date) {
+        alert('Populating Grid with start:' + start_date +  "|end:" + end_date);
         var params =   {
                 "method": "query",
                 "start_date": start_date,
@@ -145,10 +149,10 @@ class ProvisionRenderGrid extends Component {
     return (
      <Container>
       <div id="Dates">
-        <input type="date" value={this.state.start_date}
-                    onChange={this.handleStartDateChange}
+        <DatePicker selected={this.state.date_picker_start}
+                    onChange={this.handleStartDateChange} 
         />
-        <input type="date" value={this.state.end_date}
+        <DatePicker selected={this.state.date_picker_end}
                     onChange={this.handleEndDateChange}
         />
       </div>   
