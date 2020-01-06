@@ -15,7 +15,14 @@ firstOfMonthDebits = [ ('GAS', -64.0, 'GAS'), provision Type 6
                         PHONE    SKY       provisionType 1
                         HOUSE INSURANCE LUDHAM INSURANCE provisionType 0
                        
-                       
+                       6: 'GAS',
+                       3: 'INSURANCE',
+                       13: 'OTHERS',
+                       0: 'HOUSE_INSURANCE',
+                       5: 'WATER',
+                       10: 'TV_LICENSE',
+                       9: 'COUNCIL',
+                       13: 'OTHERS',
                        
 +---------------+
 |            11 |
