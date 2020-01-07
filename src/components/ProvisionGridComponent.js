@@ -139,8 +139,19 @@ class ProvisionRenderGrid extends Component {
   updateSelectedRow(params) {
     const selectedNodes = params.api.getSelectedNodes()
     const selectedData = selectedNodes.map( node => node.data )
-    const selectedDataStringPresentation = selectedData.map( node => node.make + ' ' + node.model + ' ' + node.price).join(', ')
-    alert('We should update:' + selectedDataStringPresentation);
+    var params = {
+        "method" : "update",
+        "provisionId" : selectedData[0].ID,
+        "provsionAmount" : selectedData[0].amount,
+        "description" : selectedData[0].description,
+        "provisionType" : selectedData[0].provisionType,
+        "user"          : selectedData[0].user};
+    //const selectedDataStringPresentation = selectedData.map( node =>
+    //{ FirstName: "Chris", "one": 1,  1: "some value"};)
+     //[node.amount, node.ID, node.provisionType,node.ID,node.provisionDate])
+    
+    
+    alert('We should update:' + JSON.stringify(params));
   }
 
 
