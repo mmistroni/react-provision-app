@@ -43,9 +43,17 @@ class MyModal extends React.Component {
                 },
                 body: JSON.stringify(params)          
           })
-          .then(result => result.json())
-          .then(jsonData => alert('We got:' + jsonData))
-    }
+          .then(response => response.json())
+         .then(response => {
+          alert(JSON.stringify(response));
+          })
+     .catch(error => {
+        //Error
+        alert(JSON.stringify(error));
+        console.error(error);
+        return [{"CASH" : -1}];
+      });     
+     }
     
     handleForm(values) {
       var params = {

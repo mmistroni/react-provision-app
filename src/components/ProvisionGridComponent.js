@@ -17,7 +17,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 
-
 class ProvisionRenderGrid extends Component {
   constructor(props) {
     super(props);
@@ -69,6 +68,7 @@ class ProvisionRenderGrid extends Component {
   handleStartDateChange(selected_dt){
       var date_str = moment(selected_dt).format('YYYY-MM-DD');
       alert('You have selected start date:' + date_str);
+      
       this.setState({
               start_date : date_str,
               date_picker_start : selected_dt});
@@ -87,14 +87,14 @@ class ProvisionRenderGrid extends Component {
     }  
     
   populateGrid(start_date, end_date) {
-        alert('Populating Grid with start:' + start_date +  "|end:" + end_date);
+        console.log('Populating Grid with start:' + start_date +  "|end:" + end_date);
         var params =   {
                 "method": "query",
                 "start_date": start_date,
                 "end_date": end_date 
               }
    
-        alert("Fetching with:" + JSON.stringify(params));
+        console.log("Fetching with:" + JSON.stringify(params));
         fetch('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/query', {
                 method: 'POST',
                 headers: {
@@ -132,9 +132,25 @@ class ProvisionRenderGrid extends Component {
   onDeleteRow = e => {
     const selectedNodes = this.gridApi.getSelectedNodes()
     const selectedData = selectedNodes.map( node => node.data )
-    const selectedDataStringPresentation = selectedData.map( node => node.make + ' ' + node.model + ' ' + node.price).join(', ')
-    alert('We should delete:' + selectedDataStringPresentation);
-  }
+     var params = {
+      "method": "delete",
+      "provisionId": selectedData[0].ID
+      }
+    console.log('We should delete:' + JSON.stringify(params));
+    fetch('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/delete', {
+                method: 'POST',
+                headers: {
+                          'Accept': 'application/json',
+                           'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(params)          
+          })
+          .then(result => result.json())
+          .then(jsonData => alert(JSON.stringify(jsonData)));
+    this.populateGrid(moment(this.state.start_date).format('YYYY-MM-DD'),
+                      moment(this.state.end_date).format('YYYY-MM-DD'));
+    }
+  
   
   updateSelectedRow(params) {
     const selectedNodes = params.api.getSelectedNodes()

@@ -7,7 +7,7 @@ const postServiceData = (url, params) => {
     console.log('Sending data to :' + url);
     console.log('cache status' + cachedPostData );
     console.log('post-data: requesting data');
-    fetch(url, {
+    return fetch(url, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -15,18 +15,8 @@ const postServiceData = (url, params) => {
         },
         body: JSON.stringify(params)
       })
-    .then(response => response.json())
-    .then(response => {
-        console.log(response);
-        return response;
-          })
-     .catch(error => {
-        //Error
-        alert(JSON.stringify(error));
-        console.error(error);
-        return [{"CASH" : -1}];
-      });     
-     }
+      }
+    
        
 
 
