@@ -27,6 +27,11 @@ class ProvisionRenderGrid extends Component {
       date_picker_end: new Date(),
            
       columnDefs: PROVISION_COLUMNDEFS,
+      autoGroupColumnDef: {
+        headerName: "Athlete",
+        width: 300,
+        field: "athlete"
+      },
       test: 'passing props',
       sideBar: {
         toolPanels: [
@@ -50,10 +55,6 @@ class ProvisionRenderGrid extends Component {
             {
               statusPanel: "agAggregationComponent",
               align: "left"
-            },
-            {
-              statusPanel: "agTotalRowCountComponent",
-              align: "center"
             },
             { statusPanel: "agFilteredRowCountComponent" },
             { statusPanel: "agSelectedRowCountComponent" }
@@ -200,6 +201,9 @@ class ProvisionRenderGrid extends Component {
                 rowSelection="single"
                 pagination="true"
                 paginationPageSize="14"
+                autoGroupColumnDef={this.state.autoGroupColumnDef}
+                groupIncludeFooter={true}
+                groupIncludeTotalFooter={true}
                 onGridReady={ params => this.gridApi = params.api }
                 onCellValueChanged={params => this.updateSelectedRow(params)}>
               </AgGridReact>

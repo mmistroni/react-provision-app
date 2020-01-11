@@ -14,7 +14,7 @@ export const PROVISION_COLUMNDEFS =  [
               enableRowGroup:true, width:80, sort:"desc"}, 
       { headerName: "DESCRIPTION", field: "description",  enableValue:true, editable:true},
       { headerName: "TYPE", field: "provisionType", enableRowGroup:true, width:100}, 
-      { headerName: "AMOUNT", field: "amount",  enableValue:true, type: "numericColumn", allowedAggFuncs: ["sum"], editable:true},
+      { headerName: "AMOUNT", field: "amount",  enableValue:true, type: "numericColumn", editable:true, aggFunc: "sum"},
       { headerName: "DATE", field: "provisionDate",  enableValue:true},
       { headerName: "USER", field: "user",  enableValue:true},
       
