@@ -159,16 +159,27 @@ class ProvisionRenderGrid extends Component {
     var params = {
         "method" : "update",
         "provisionId" : selectedData[0].ID,
-        "provsionAmount" : selectedData[0].amount,
+        "provisionAmount" : selectedData[0].amount,
         "description" : selectedData[0].description,
         "provisionType" : selectedData[0].provisionType,
         "user"          : selectedData[0].user};
     //const selectedDataStringPresentation = selectedData.map( node =>
     //{ FirstName: "Chris", "one": 1,  1: "some value"};)
      //[node.amount, node.ID, node.provisionType,node.ID,node.provisionDate])
-    
-    
     alert('We should update:' + JSON.stringify(params));
+    fetch('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/delete', {
+                method: 'POST',
+                headers: {
+                          'Accept': 'application/json',
+                           'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(params)          
+          })
+          .then(result => result.json())
+          .then(jsonData => alert(JSON.stringify(jsonData)));
+    this.populateGrid(moment(this.state.start_date).format('YYYY-MM-DD'),
+                      moment(this.state.end_date).format('YYYY-MM-DD'));
+    
   }
 
 
