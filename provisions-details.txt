@@ -24,33 +24,42 @@ firstOfMonthDebits = [ ('GAS', -64.0, 'GAS'), provision Type 6
                        9: 'COUNCIL',
                        13: 'OTHERS',
                        
-+---------------+
-|            11 |
-|             5 |
-|             8 |
-|             2 |
-|             1 |
-|             9 |
-|             6 |
-|             7 |
-|             0 |
-|            13 |
-|            10 |
-|            12 |
-|             3 |
-|             4 |
+AFTER SKY DEBIT WE WILL RESET THE WHOLE DATABASE AND START FROM THE BELOW                       
+                       
+| provisionType | sum(amount)         |
++---------------+---------------------+
+|             0 |             -579.11 |  HOUSE_INSURANCE    -579
+|             1 |  314.95000000000005 |  PHONE              416  PHONE AND TISCALI     
+|             2 |              102.62 |  TISCALI
+|             3 |                -415 |  INSURANCE          32 DEBITED USING WATER
+|             4 |                -2.5 |  HOLIDAYS           0
+|             5 |                 450 |  WATER              0
+|             6 |                1902 |  GAS                 1256  GAS
+|             7 |                -646 |  ELECTRICITY         0
 
+THE FOLLOWNG WILL BE COMPENSATED ALTOGETHER
 
-('HOUSE_INSURANCE', -48.0, 'LUDHAM Insurance', -4    3
+|             8 |             2002.78 |  CAR                 992        
+|             9 |  1928.7999999999997 |  COUNCIL             0
+|            10 |   461.1399999999997 |  TV_LICENSE          0 TV LICENSE
+|            11 |            -2450.25 |  PRESENTS            0  PRESENTS
+|            12 | -104.00999999999976 |  EXTRAS             0  OTHERS
+|            13 |  -827.9499999999994 |  OTHERS             0  
++---------------+---------------------+
 
+<option value="0"></option>
+                                         <option value="1"></option>
+                                         <option value="2"></option>
+                                         <option value="3"></option>
+                                         <option value="4"></option>
+                                         <option value="5"></option>
+                                         <option value="6"></option>
+                                         <option value="7"></option>
+                                         <option value="8"></option>
+                                         <option value="9"></option>
+                                         <option value="10"></option>
+                                         <option value="11"></option>
+                                         <option value="12"></option>
+                                         <option value="13"></option>
+                                         <option value="14">UNKNOWN</option>
 
-
-
-
- ('PHONE', -68.0, 'SKY direct debit', + 8)        1
-
-
-
-
-
-0 5 17 * ? *

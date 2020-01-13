@@ -96,14 +96,7 @@ class ProvisionRenderGrid extends Component {
               }
    
         console.log("Fetching with:" + JSON.stringify(params));
-        fetch('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/query', {
-                method: 'POST',
-                headers: {
-                          'Accept': 'application/json',
-                           'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(params)          
-          })
+        postServiceData('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/query', params) 
           .then(result => result.json())
           .then(jsonData => this.setState({
                  rowData: jsonData}))
@@ -138,14 +131,17 @@ class ProvisionRenderGrid extends Component {
       "provisionId": selectedData[0].ID
       }
     console.log('We should delete:' + JSON.stringify(params));
+    /*
     fetch('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/delete', {
                 method: 'POST',
-                headers: {
+                           headers: {
                           'Accept': 'application/json',
                            'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(params)          
           })
+    */
+      postServiceData('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/delete', params) 
           .then(result => result.json())
           .then(jsonData => alert(JSON.stringify(jsonData)));
     this.populateGrid(moment(this.state.start_date).format('YYYY-MM-DD'),
@@ -167,6 +163,7 @@ class ProvisionRenderGrid extends Component {
     //{ FirstName: "Chris", "one": 1,  1: "some value"};)
      //[node.amount, node.ID, node.provisionType,node.ID,node.provisionDate])
     alert('We should update:' + JSON.stringify(params));
+    /*
     fetch('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/delete', {
                 method: 'POST',
                 headers: {
@@ -175,8 +172,11 @@ class ProvisionRenderGrid extends Component {
                 },
                 body: JSON.stringify(params)          
           })
+     */
+       postServiceData('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/update', params) 
           .then(result => result.json())
           .then(jsonData => alert(JSON.stringify(jsonData)));
+     
     this.populateGrid(moment(this.state.start_date).format('YYYY-MM-DD'),
                       moment(this.state.end_date).format('YYYY-MM-DD'));
     

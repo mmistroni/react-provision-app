@@ -15,7 +15,7 @@ const postServiceData = (url, params) => {
         },
         body: JSON.stringify(params)
       })
-      }
+}
     
        
 

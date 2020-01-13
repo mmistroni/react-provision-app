@@ -7,6 +7,8 @@ import Modal from 'react-awesome-modal';
 import moment from 'moment';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { getServiceData, postServiceData } from '../utils/Utils';
+
 
 // Refactor this into a component as we need to set the state for the react popup
 
@@ -35,6 +37,9 @@ class MyModal extends React.Component {
     }
 
     formSubmit(params) {
+      alert('submitting form...')
+      
+      /*
       fetch(' https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/insert', {
                 method: 'POST',
                 headers: {
@@ -43,6 +48,8 @@ class MyModal extends React.Component {
                 },
                 body: JSON.stringify(params)          
           })
+       */
+          postServiceData('https://2qfsbxqbag.execute-api.us-west-2.amazonaws.com/test/rest-provisions/insert', params) 
           .then(response => response.json())
          .then(response => {
           alert(JSON.stringify(response));
